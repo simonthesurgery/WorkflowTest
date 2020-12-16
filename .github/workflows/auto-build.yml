@@ -37,7 +37,7 @@ jobs:
           git fetch
           git checkout master
           git checkout release
-          git merge master --no-commit --squash
+          git merge -Xtheirs master --no-commit --squash
 
       - name: Build
         run: ionic build --prod
