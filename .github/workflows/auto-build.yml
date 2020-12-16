@@ -51,4 +51,4 @@ jobs:
           git commit -m "Build"
       
       - name: Push Build
-        run: git push
+        run: git push --force
