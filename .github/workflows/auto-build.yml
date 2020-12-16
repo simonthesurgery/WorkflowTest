@@ -36,7 +36,6 @@ jobs:
         run: |
           git fetch
           git checkout master
-          git pull
           git checkout release
           git rebase -s ours master release
 
@@ -48,7 +47,7 @@ jobs:
           git config user.email "simon@ineedsurgery.com"
           git config user.name "simon"
           git add www/
-          git commit -m "Build"
+          git commit -m "Build - $GITHUB_RUN_ID"
       
       - name: Push Build
         run: git push --force
