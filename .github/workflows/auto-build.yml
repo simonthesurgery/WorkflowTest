@@ -47,6 +47,6 @@ jobs:
       
       - name: Push Build
         run: |
-        git config user.email "simon@ineedsurgery.com"
-        git config user.name "simon"
-        git push
+          git config user.email "simon@ineedsurgery.com"
+          git config user.name "simon"
+          git push
