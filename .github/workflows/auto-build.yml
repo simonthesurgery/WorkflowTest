@@ -33,7 +33,9 @@ jobs:
       - name: Build
         run: |
           npm i
-          git fetch
+          git fetch master
+          git checkout master
+          git checkout release
           git merge master --no-commit --squash
           ionic build --prod
           git commit -m "Build"
