@@ -30,24 +30,34 @@ jobs:
       - uses: coturiv/setup-ionic@v1
 
       - name: Install node Packages
-        run : npm i
+        run: npm i
+
+      - name: Initialise Git Config
+        run: |
+          git config user.email "simon@ineedsurgery.com"
+          git config user.name "simon"
 
       - name: Get code changes for build
         run: |
           git fetch
           git checkout master
-          git checkout release
-          git rebase -s ours master release
+
+      - name: Create temporary build branch
+        run: |
+          git branch build-temp
+          git checkout build-temp
+          git merge master
 
       - name: Build
-        run: ionic build --prod
-
-      - name: Initialise Commit
-        run: | 
-          git config user.email "simon@ineedsurgery.com"
-          git config user.name "simon"
-          git add www/
+        run: |
+          ionic build --prod
           git commit -m "Build - $GITHUB_RUN_ID"
+
+      - name: Rebase build commit
+        run: |
+          git checkout release
+          git rebase build-temp release
+          git branch build-temp -d
       
       - name: Push Build
-        run: git push --force
+        run: git push
