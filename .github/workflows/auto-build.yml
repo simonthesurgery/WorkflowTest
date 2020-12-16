@@ -33,7 +33,7 @@ jobs:
       - name: Build
         run: |
           npm i
-          git fetch master
+          git fetch
           git checkout master
           git checkout release
           git merge master --no-commit --squash
