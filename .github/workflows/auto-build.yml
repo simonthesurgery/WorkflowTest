@@ -21,9 +21,6 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-        with:
-          ref: master
 
       - uses: actions/checkout@v2
         with:
@@ -36,7 +33,7 @@ jobs:
       - name: Build
         run: |
           npm i
-          git merge master --no-commit --squash
+          git merge origin/master --no-commit --squash
           ionic build --prod
           git commit -m "Build"
           git push
