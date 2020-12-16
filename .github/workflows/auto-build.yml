@@ -36,8 +36,8 @@ jobs:
         run: |
           git fetch
           git checkout master
-          git rebase release
           git checkout release
+          git merge -X theirs master
 
       - name: Build
         run: ionic build --prod
