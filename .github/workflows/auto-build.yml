@@ -29,15 +29,21 @@ jobs:
       - uses: actions/setup-node@v2
       - uses: coturiv/setup-ionic@v1
 
-      # Runs a single command using the runners shell
-      - name: Build
+      - name: Install node Packages
+        run : npm i
+
+      - name: Get code changes for build
         run: |
-          npm i
           git fetch
           git checkout master
           git checkout release
           git merge master --no-commit --squash
-          ionic build --prod
-          git commit -m "Build"
-          git push
-          echo Done!
+
+      - name: Build
+        run: ionic build --prod
+
+      - name: Commit build
+        run: git commit -m "Build"
+      
+      - name: Push Build
+        run: git push
