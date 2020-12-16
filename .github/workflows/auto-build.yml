@@ -43,10 +43,10 @@ jobs:
         run: ionic build --prod
 
       - name: Initialise Commit
-        run: git commit -m "Build"
-      
-      - name: Push Build
-        run: |
+        run: | 
           git config user.email "simon@ineedsurgery.com"
           git config user.name "simon"
-          git push
+          git commit -m "Build"
+      
+      - name: Push Build
+        run: git push
