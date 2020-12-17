@@ -46,13 +46,11 @@ jobs:
       - name: Create temporary build branch
         run: |
           git checkout --orphan build-temp
-          git rm -rf .
-          git merge master --no-commit --squash
 
       - name: Build
         run: |
           ionic build --prod
-          git add www/
+          git add --all
           git commit -m "Build - $GITHUB_RUN_ID"
 
       - name: Rebase build commit
