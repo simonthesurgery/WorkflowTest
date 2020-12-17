@@ -41,6 +41,7 @@ jobs:
         run: |
           git fetch
           git checkout master
+          git pull
 
       - name: Create temporary build branch
         run: |
@@ -57,6 +58,7 @@ jobs:
       - name: Rebase build commit
         run: |
           git checkout release
+          git pull
           git rebase -s ours build-temp release
           git branch build-temp -d
       
