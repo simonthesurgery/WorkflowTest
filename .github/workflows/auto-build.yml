@@ -51,13 +51,13 @@ jobs:
       - name: Build
         run: |
           ionic build --prod
-          git add --all
+          git add
           git commit -m "Build - $GITHUB_RUN_ID"
 
       - name: Rebase build commit
         run: |
           git checkout release
-          git rebase build-temp release
+          git rebase -s ours build-temp release
           git branch build-temp -d
       
       - name: Push Build
