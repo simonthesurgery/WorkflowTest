@@ -46,7 +46,7 @@ jobs:
         run: |
           git branch build-temp
           git checkout build-temp
-          git merge master
+          git merge master --no-commit --squash
 
       - name: Build
         run: |
