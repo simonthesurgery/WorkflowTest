@@ -45,8 +45,8 @@ jobs:
 
       - name: Create temporary build branch
         run: |
-          git branch build-temp
-          git checkout build-temp
+          git checkout --orphan build-temp
+          git rm -rf .
           git merge master --no-commit --squash
 
       - name: Build
