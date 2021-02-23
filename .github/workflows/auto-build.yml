@@ -46,6 +46,7 @@ jobs:
       - name: Checkout release and merge
         run: |
           git checkout release
+          git pull
           git merge master --squash --no-commit --allow-unrelated-histories -X theirs
           git reset
 
