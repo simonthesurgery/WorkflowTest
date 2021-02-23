@@ -40,14 +40,14 @@ jobs:
       - name: Get code changes for build
         run: |
           git fetch
-          git checkout master
+          git checkout dev
           git pull
       
       - name: Checkout release and merge
         run: |
           git checkout release
           git pull
-          git merge master --squash --no-commit --allow-unrelated-histories -X theirs
+          git merge dev --squash --no-commit --allow-unrelated-histories -X theirs
           git reset
 
       - name: Build
