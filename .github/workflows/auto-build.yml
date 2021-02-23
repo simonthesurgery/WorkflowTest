@@ -42,23 +42,19 @@ jobs:
           git fetch
           git checkout master
           git pull
-
-      - name: Create temporary build branch
+      
+      - name: Checkout release and merge
         run: |
-          git checkout --orphan build-temp
+          git checkout release
+          git pull
+          git merge master --squash --no-commit --allow-unrelated-histories -X theirs
+          git reset
 
       - name: Build
         run: |
           ionic build --prod
           git add --all
           git commit -m "Build - $GITHUB_RUN_ID"
-
-      - name: Rebase build commit
-        run: |
-          git checkout release
-          git pull
-          git rebase -s ours build-temp release
-          git branch build-temp -d
       
       - name: Push Build
         run: git push --force
